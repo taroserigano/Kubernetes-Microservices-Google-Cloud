@@ -1,0 +1,132 @@
+*use CONNECT to connect ro your cluster 
+
+
+
+
+kubectl get nodes 
+
+kubectl get pods 
+
+kubectl get all 
+
+-- add configmap to cluster 
+kubectl apply -f 1_configmaps.yml
+
+kubectl get configmap
+
+kubectl get services 
+
+kubectl get deployments 
+
+kubectl get pods - see what's been created 
+
+kubectl apply -f 2_zipkin.yml
+
+kubectl delete pod <name> 
+
+
+
+----------DEPLOYMENT----
+
+
+
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl get replicaset
+W1229 18:05:26.408127    4528 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+NAME                                 DESIRED   CURRENT   READY   AGE
+accounts-deployment-6d9ffc47b8       1         1         1       3m19s
+configserver-deployment-849988cf9    1         1         1       4m43s
+eurekaserver-deployment-7d9d84cbcc   1         1         1       4m21s
+zipkin-deployment-6d588859dc         1         1         1       5m8s
+
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl get pods
+W1229 18:03:02.386024   16344 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+NAME                                       READY   STATUS    RESTARTS   AGE
+accounts-deployment-6d9ffc47b8-z5thc       1/1     Running   0          55s
+configserver-deployment-849988cf9-lfq5p    1/1     Running   0          2m19s
+eurekaserver-deployment-7d9d84cbcc-kxg2q   1/1     Running   0          117s
+zipkin-deployment-6d588859dc-25qrx         1/1     Running   0          2m44s
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl get deployments
+W1229 18:04:08.881580   17180 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+accounts-deployment       1/1     1            1           2m2s
+configserver-deployment   1/1     1            1           3m26s
+eurekaserver-deployment   1/1     1            1           3m4s
+zipkin-deployment         1/1     1            1           3m52s
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl get services
+W1229 18:04:16.591878    5800 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)          AGE
+accounts-service       LoadBalancer   10.8.0.75     34.71.173.201    8080:31408/TCP   2m9s
+configserver-service   LoadBalancer   10.8.12.111   34.135.254.188   8071:32609/TCP   3m33s
+eurekaserver-service   LoadBalancer   10.8.8.6      35.222.123.83    8070:30963/TCP   3m11s
+kubernetes             ClusterIP      10.8.0.1      <none>           443/TCP          171m
+zipkin-service         LoadBalancer   10.8.12.238   104.154.78.113   9411:30209/TCP   3m57s
+
+
+
+
+
+
+
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl apply -f 2_zipkin.yml
+W1229 18:00:17.428412   16652 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+deployment.apps/zipkin-deployment created
+service/zipkin-service created
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl apply -f 3_configserver.yml
+W1229 18:00:43.007815    6548 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+deployment.apps/configserver-deployment created
+service/configserver-service created
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl apply -f 4_eurekaserver.yml
+W1229 18:01:05.065332   10304 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+deployment.apps/eurekaserver-deployment created
+service/eurekaserver-service created
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>kubectl apply -f 5_accounts.yml
+W1229 18:02:06.607206   22144 gcp.go:120] WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.
+To learn more, consult https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+deployment.apps/accounts-deployment created
+service/accounts-service created
+
+C:\Users\taroseri\Documents\TEMP n BYE\microservices-with-spring-main\accounts\kubernetes>
+
+
+
+
+------VALIDATION----------
+
+http://34.135.254.188:8071/accounts/prod
+
+http://34.135.254.188:8071/loans/dev 
+
+http://34.71.173.201:8080/account/properties 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
