@@ -1,4 +1,4 @@
-# Kubernetes-Microservices-k8S-CLUSTERS
+# AZURE Kubernetes-Microservices-k8S-CLUSTERS
 
 Kubernetes Deployment of a microservices app - this is a project to deploy a microservices on Google Azure Services using Kubernetes. The deployment uses loa balancers and auto-scaling. As you know, Kubernetes supports servive directoy, self-healing, storage orchestration, automated rollouts and rollbacks, secret and configuration management etc, so this application supports all of those features. 
 
