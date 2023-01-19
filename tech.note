@@ -1,0 +1,128 @@
+
+
+
+Dock 
+
+Depends on l confis server 
+Makes sure that config server is loaded to read the properties file to read from 
+
+Deploy 
+
+Window 120s 
+
+The total period of restart attempt
+
+
+
+
+
+
+
+
+
+
+Micro config
+
+
+
+Spring config I 
+
+Server.git.url  l url address for repo 
+Server.clone.on l will start cloning as startup 
+Git.def.label   l main l branch name 
+
+Spring config impoet- optional l config server l http localhost. 8071 l when the app is down, access this config endpoint where all the properties info you can get from 
+
+It's optional because you allow to start up the app, l omit optional if you don't allow re startup
+
+Pom 
+
+Set up the spring cloud version in pom, 
+And then add starter config 
+Add applicable spring version setting for it to be set up the right version 
+
+Create cardserviceconfig bean with setter and getter that
+Grabs all config info in git repo,
+
+Create request mapping that connect to that repo and use this object to use, config.get() 
+
+@Refreshscope 
+
+Endpoint=* l in order to tell spring that the update has happened and refresh/restart is needed  
+
+
+
+
+Eureka
+
+Eureka instance prefer ip address l will use IP address for load balancing, routing 
+Register with eureka, true, will be registered 
+Fetch registry, registry is other services and find them 
+Service url default zone l just setting up the URL 
+
+
+
+
+
+
+
+Circuit breaker
+
+Minnimberofcalls l minimum number of try until go to open status 
+
+Fsilurerste threshold l if 50 % success, then will go back to closed 
+
+
+Wait duration in open state l duration of half open to decide whether to go half open or remain open 
+
+Number of calls in calls to decided whether go to open or close when it's in half open 
+
+
+
+
+Sleuth  zupkin rabbit mq 
+
+
+In prop file of All services l 
+
+Spring.sleuth.percentage=1 l logs 100% of the trace in sleuth 
+
+Spring.zipkin.baseurl=http://localhost:9411/ 
+
+
+How to send sleuth logs into rabbitmq whenever event happens like created new person 
+
+Spring zupkin sender type -rabbit l this is rabbitmq style 
+Port - 5672 
+Spring zupkin rabbitmq.queue - zipkin -- set up the name for queue 
+
+
+
+
+
+Kubernetes
+
+
+Kubectl rollout history deployment accounts-service --to-rebision=1 (2 for last two) 
+
+Will roll back to the previous version 
+
+Kubectl set image deployment accounts-service accounts=eazybytes/accounts:kys 
+
+Will update the pod to the newest pushed version 
+
+
+
+
+OAuth2
+
+Basic flow structure
+
+
+User access client
+Client asks username and pwd 
+
+Client connect auth server 
+Auth server issue token 
+Client send this token to resource server 
+Resource server sends the resource to the client 
